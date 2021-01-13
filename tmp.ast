@@ -1,0 +1,99 @@
+[
+  structure_item (manualTest/ManualTest.re[1,0+0]..[1,0+12])
+    Pstr_type Rec
+    [
+      type_declaration "x" (manualTest/ManualTest.re[1,0+5]..[1,0+6]) (manualTest/ManualTest.re[1,0+0]..[1,0+12])
+        ptype_params =
+          []
+        ptype_cstrs =
+          []
+        ptype_kind =
+          Ptype_abstract
+        ptype_private = Public
+        ptype_manifest =
+          Some
+            core_type (manualTest/ManualTest.re[1,0+9]..[1,0+12])
+              Ptyp_constr "int" (manualTest/ManualTest.re[1,0+9]..[1,0+12])
+              []
+    ]
+  structure_item (manualTest/ManualTest.re[2,14+0]..[2,14+17]) ghost
+    Pstr_value Nonrec
+    [
+      <def>
+        pattern (manualTest/ManualTest.re[2,14+4]..[2,14+9])
+          Ppat_var "x_gql" (manualTest/ManualTest.re[2,14+4]..[2,14+9])
+        expression (manualTest/ManualTest.re[2,14+12]..[2,14+17])
+          attribute "reason.raw_literal"
+            [
+              structure_item (_none_[0,0+-1]..[0,0+-1]) ghost
+                Pstr_eval
+                expression (_none_[0,0+-1]..[0,0+-1]) ghost
+                  Pexp_constant PConst_string("int",None)
+            ]
+          Pexp_constant PConst_string("int",None)
+    ]
+  structure_item (manualTest/ManualTest.re[4,34+0]..[8,79+1])
+    Pstr_type Rec
+    [
+      type_declaration "t" (manualTest/ManualTest.re[5,50+5]..[5,50+6]) (manualTest/ManualTest.re[5,50+0]..[8,79+1])
+        attribute "deriving"
+          [
+            structure_item (manualTest/ManualTest.re[4,34+11]..[4,34+14])
+              Pstr_eval
+              expression (manualTest/ManualTest.re[4,34+11]..[4,34+14])
+                Pexp_ident "gql" (manualTest/ManualTest.re[4,34+11]..[4,34+14])
+          ]
+        ptype_params =
+          []
+        ptype_cstrs =
+          []
+        ptype_kind =
+          Ptype_record
+            [
+              (manualTest/ManualTest.re[6,61+2]..[6,61+8])
+                Immutable
+                "a" (manualTest/ManualTest.re[6,61+2]..[6,61+3])                core_type (manualTest/ManualTest.re[6,61+5]..[6,61+8])
+                  Ptyp_constr "int" (manualTest/ManualTest.re[6,61+5]..[6,61+8])
+                  []
+              (manualTest/ManualTest.re[7,71+2]..[7,71+6])
+                Immutable
+                "b" (manualTest/ManualTest.re[7,71+2]..[7,71+3])                core_type (manualTest/ManualTest.re[7,71+5]..[7,71+6])
+                  Ptyp_constr "x" (manualTest/ManualTest.re[7,71+5]..[7,71+6])
+                  []
+            ]
+        ptype_private = Public
+        ptype_manifest =
+          None
+    ]
+  structure_item (manualTest/ManualTest.re[10,83+0]..[10,83+31])
+    Pstr_eval
+    expression (manualTest/ManualTest.re[10,83+0]..[10,83+31])
+      Pexp_apply
+      expression (manualTest/ManualTest.re[10,83+0]..[10,83+13])
+        Pexp_ident "print_endline" (manualTest/ManualTest.re[10,83+0]..[10,83+13])
+      [
+        <arg>
+        Nolabel
+          expression (manualTest/ManualTest.re[10,83+14]..[10,83+30])
+            Pexp_apply
+            expression (manualTest/ManualTest.re[10,83+19]..[10,83+21])
+              Pexp_ident "^" (manualTest/ManualTest.re[10,83+19]..[10,83+21])
+            [
+              <arg>
+              Nolabel
+                expression (manualTest/ManualTest.re[10,83+14]..[10,83+18])
+                  attribute "reason.raw_literal"
+                    [
+                      structure_item (_none_[0,0+-1]..[0,0+-1]) ghost
+                        Pstr_eval
+                        expression (_none_[0,0+-1]..[0,0+-1]) ghost
+                          Pexp_constant PConst_string("\\n",None)
+                    ]
+                  Pexp_constant PConst_string("\n",None)
+              <arg>
+              Nolabel
+                expression (manualTest/ManualTest.re[10,83+22]..[10,83+30])
+                  Pexp_ident "typename" (manualTest/ManualTest.re[10,83+22]..[10,83+30])
+            ]
+      ]
+]

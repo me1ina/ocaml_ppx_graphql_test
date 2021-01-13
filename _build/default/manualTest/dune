@@ -1,0 +1,7 @@
+(executable
+ (name ManualTest)
+ (public_name ManualTest)
+ (preprocess
+ (pps SimplePpx.lib)
+ )
+)
