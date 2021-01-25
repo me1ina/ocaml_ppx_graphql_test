@@ -157,8 +157,7 @@ let rec get_record_list_without_first_basic_records =
 
 let rec convert_complex_nested_core_types = (core_type, type_name, opt, loc) => {
   let core_type_string = extract_string_from_core_type(core_type, loc);
-/*   print_endline(Printf.sprintf("opt: %B", opt));
- */
+
   switch (type_name) {
   | "option" =>
     convert_complex_nested_core_types(
@@ -223,24 +222,33 @@ let structure_item_with_alias_types = (lds, typename, loc): structure_item => {
          [%expr [%e expressions |> List.hd |> make_expression]],
        );
 
-  [%stri
-    let [%p pvar(~loc, typename ++ "_gql")] =
-      [%e estring(~loc, resolve_first_part(lds, typename, loc))]
-      ++ [%e
-        get_record_list_without_first_basic_records(lds, loc)
-        |> consolidate_expressions
-      ]
-      ++ [%e estring(~loc, "}")]
-  ];
+    /* [%stri 
+      let [%p pvar(~loc, typename)] = 
+        [%expr [%e evar(~loc, "record_types")] @ [%e estring(~loc, typename)]]
+        ] */
+
+    [%stri
+      let [%p pvar(~loc, typename ++ "_gql")] =
+        [%e estring(~loc, resolve_first_part(lds, typename, loc))]
+        ++ [%e
+          get_record_list_without_first_basic_records(lds, loc)
+          |> consolidate_expressions
+        ]
+        ++ [%e estring(~loc, "}")]
+    ];
 };
 
 let record_accessor_impl =
-    (lds: list(label_declaration), type_name: string, loc) =>
+    (lds: list(label_declaration), type_name: string, loc) => {
+
+/*  [%stri let [%p pvar(~loc, type_name)] = [%expr [%e evar(~loc, "record_types")] @ [%e estring(~loc, type_name)]]] */
+
   if (recordContainsOnlyBasicTypes(lds, loc)) {
     structure_item_with_basic_types(lds, type_name, loc);
   } else {
     structure_item_with_alias_types(lds, type_name, loc);
   };
+}
 
 let get_abstract_expression = (core_type, loc) => {
   let extracted_core_type = extract_string_from_core_type(core_type, loc);
@@ -267,7 +275,7 @@ let generate_impl = (~ctxt, (_rec_flag, type_declarations)) => {
     | {ptype_kind: Ptype_abstract, ptype_manifest, ptype_name, ptype_loc, _} =>
       switch (ptype_manifest) {
       | Some(core_type) =>
-        abstract_accessor_impl(core_type, ptype_name.txt, ptype_loc)
+         abstract_accessor_impl(core_type, ptype_name.txt, ptype_loc)
       | _ => Location.raise_errorf(~loc, "No type found")
       }
 
@@ -280,76 +288,3 @@ let generate_impl = (~ctxt, (_rec_flag, type_declarations)) => {
 let impl_generator = Deriving.Generator.V2.make_noarg(generate_impl);
 
 let my_deriver = Deriving.add("gql", ~str_type_decl=impl_generator);
-
-/*
-  Here are the kinds of generators that can be registered:
-
-  -str_type_decl;
-  -str_type_ext;
-  -str_exception;
-  -sig_type_decl;
-  -sig_type_ext;
-  -sig_exception;
-  -extension.
-  The str_xyz generators are for structures/implementations, while the sig_xyz generators are for signatures/interfaces.
-  extension can be used only in structures (it generates an expression).
-
-  Then, xyz_type_decl is for type declarations (i.e. type t = (…) [@@deriving foo]),
-  xyz_exception is for exception declarations (i.e. exception E [@@deriving foo]),
-  and xyz_type_ext is for type extensions (i.e. type t += A [@@deriving foo] after type t = ..).
-  Finally, extension is expected to be used like that: let _ = [%foo : t].
-
-
-
-   let accessor_intf = (~ptype_name, ld: label_declaration) => {
-     let loc = ld.pld_loc;
-     psig_value(
-       ~loc,
-       {
-         pval_name: ld.pld_name,
-         pval_type:
-           ptyp_arrow(
-             ~loc,
-             Nolabel,
-             ptyp_constr(~loc, {loc, txt: lident(ptype_name.txt)}, []),
-             ld.pld_type,
-           ),
-         pval_attributes: [],
-         pval_loc: loc,
-         pval_prim: [],
-       },
-     );
-   };
-
-   let generate_intf = (~ctxt, (_rec_flag, type_declarations)) => {
-     let loc = Expansion_context.Deriver.derived_item_loc(ctxt);
-     List.concat_map(type_declarations, ~f=(td: type_declaration) =>
-       switch (td) {
-       | {ptype_kind: Ptype_abstract | Ptype_variant(_) | Ptype_open, _} =>
-         Location.raise_errorf(
-           ~loc,
-           "Cannot derive accessors for non record types",
-         )
-       | {ptype_kind: Ptype_record(fields), ptype_name, _} =>
-         List.map(fields, ~f=accessor_intf(~ptype_name))
-       }
-     );
-    };
-
-    let intf_generator = Deriving.Generator.V2.make_noarg(generate_intf);
-
-    let my_deriver =
-   Deriving.add(
-     "accessors",
-     ~str_type_decl=impl_generator,
-     ~sig_type_decl=intf_generator,
-   );
- let intf_generator = Deriving.Generator.V2.make_noarg(generate_intf);
-
- let my_deriver =
-   Deriving.add(
-     "accessors",
-     ~str_type_decl=impl_generator,
-     ~sig_type_decl=intf_generator,
-   );
-    */
