@@ -155,6 +155,18 @@ let rec get_record_list_without_first_basic_records =
     ? get_record_list_without_first_basic_records(List.tl(lds), loc) : lds;
 };
 
+let check_if_record_expression = (type_name, loc) => {
+
+  %expr 
+    List.mem(
+      [%e estring(~loc, type_name |> String.capitalize_ascii)], 
+      [%e evar(~loc, "record_types")]) 
+    ? [%e estring(~loc, type_name |> String.capitalize_ascii)] : 
+    [%e evar(~loc, type_name ++ "_gql")]
+    
+
+}
+
 let rec convert_complex_nested_core_types = (core_type, type_name, opt, loc) => {
   let core_type_string = extract_string_from_core_type(core_type, loc);
 
@@ -179,7 +191,7 @@ let rec convert_complex_nested_core_types = (core_type, type_name, opt, loc) => 
           )]
     )
     ++ [%e estring(~loc, "]" ++ (opt ? "" : "!"))]
-  | _ => %expr [%e evar(~loc, type_name ++ "_gql")]
+  | _ => check_if_record_expression(type_name, loc)
   };
 };
 
@@ -188,7 +200,7 @@ let complexGqlDeclaration = (ld, loc) => {
     (
       switch (ld.pld_type.ptyp_desc) {
       | Ptyp_constr({txt: Lident(typename), _}, core_types) => {
-        core_types == [] ? {%expr [%e evar(~loc, typename ++ "_gql")]} : convert_complex_nested_core_types(core_types |> List.hd, typename, false, loc)
+        core_types == [] ? { check_if_record_expression(typename, loc) } : convert_complex_nested_core_types(core_types |> List.hd, typename, false, loc)
       }
       | _ => Location.raise_errorf(~loc, "Coud not access typename")
       }
@@ -222,11 +234,6 @@ let structure_item_with_alias_types = (lds, typename, loc): structure_item => {
          [%expr [%e expressions |> List.hd |> make_expression]],
        );
 
-    /* [%stri 
-      let [%p pvar(~loc, typename)] = 
-        [%expr [%e evar(~loc, "record_types")] @ [%e estring(~loc, typename)]]
-        ] */
-
     [%stri
       let [%p pvar(~loc, typename ++ "_gql")] =
         [%e estring(~loc, resolve_first_part(lds, typename, loc))]
@@ -239,15 +246,13 @@ let structure_item_with_alias_types = (lds, typename, loc): structure_item => {
 };
 
 let record_accessor_impl =
-    (lds: list(label_declaration), type_name: string, loc) => {
+    (lds: list(label_declaration), type_name: string, loc): list(structure_item) => {
 
-/*  [%stri let [%p pvar(~loc, type_name)] = [%expr [%e evar(~loc, "record_types")] @ [%e estring(~loc, type_name)]]] */
+    let record_struct_item = recordContainsOnlyBasicTypes(lds, loc) ? [structure_item_with_basic_types(lds, type_name, loc)] : [structure_item_with_alias_types(lds, type_name, loc)];
+    
+    let record_name_struct_item = [[%stri let [%p pvar(~loc, "record_types")] = [%e evar(~loc, "record_types")] @ [[%e estring(~loc, type_name |> String.capitalize_ascii)]]]];
 
-  if (recordContainsOnlyBasicTypes(lds, loc)) {
-    structure_item_with_basic_types(lds, type_name, loc);
-  } else {
-    structure_item_with_alias_types(lds, type_name, loc);
-  };
+    record_struct_item |> List.append(record_name_struct_item); 
 }
 
 let get_abstract_expression = (core_type, loc) => {
@@ -257,9 +262,11 @@ let get_abstract_expression = (core_type, loc) => {
     : evar(~loc, extracted_core_type ++ "_gql");
 };
 
-let abstract_accessor_impl = (core_type, type_name, loc) => [%stri
-  let [%p pvar(~loc, type_name ++ "_gql")] = [%e
+let abstract_accessor_impl = (core_type, type_name, loc):list(structure_item) => 
+[[%stri
+    let [%p pvar(~loc, type_name ++ "_gql")] = [%e
     get_abstract_expression(core_type, loc)
+  ]
   ]
 ];
 
@@ -275,16 +282,18 @@ let generate_impl = (~ctxt, (_rec_flag, type_declarations)) => {
     | {ptype_kind: Ptype_abstract, ptype_manifest, ptype_name, ptype_loc, _} =>
       switch (ptype_manifest) {
       | Some(core_type) =>
-         abstract_accessor_impl(core_type, ptype_name.txt, ptype_loc)
+        abstract_accessor_impl(core_type, ptype_name.txt, ptype_loc)
       | _ => Location.raise_errorf(~loc, "No type found")
       }
 
     | {ptype_kind: Ptype_record(fields), ptype_name, ptype_loc, _} =>
-      record_accessor_impl(fields, ptype_name.txt, ptype_loc)
+        record_accessor_impl(fields, ptype_name.txt, ptype_loc)
+    
     }
-  );
+  ) |> List.concat;
 };
 
 let impl_generator = Deriving.Generator.V2.make_noarg(generate_impl);
 
 let my_deriver = Deriving.add("gql", ~str_type_decl=impl_generator);
+
