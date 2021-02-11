@@ -33,5 +33,5 @@ S /home/melina/.esy/3___________________________________________________________
 S /home/melina/.esy/3___________________________________________________________________/i/opam__s__sexplib0-opam__c__v0.14.0-0a923f74/lib/sexplib0
 S /home/melina/.esy/3___________________________________________________________________/i/opam__s__stdio-opam__c__v0.14.0-3ac55b3d/lib/stdio
 S .
-FLG -ppx '/home/melina/ppx/ppxlib-simple-example/_build/default/.ppx/0224ad3443a846e54f1637fccb074e7d/ppx.exe --as-ppx --cookie '\''library-name="ppx_deriving_accessors"'\'''
+FLG -ppx '/home/melina/ppx/ocaml_ppx_graphql_test/_build/default/.ppx/0224ad3443a846e54f1637fccb074e7d/ppx.exe --as-ppx --cookie '\''library-name="ppx_deriving_accessors"'\'''
 FLG -open Ppx_deriving_accessors -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs
