@@ -1,5 +1,3 @@
-
-
 let record_types = [];
 
 [@deriving gql]
@@ -9,13 +7,13 @@ type x = int;
 type y = option(string);
 
 [@deriving gql]
-type z = y;
+type z = y; 
 
-/* [@deriving gql(~name="aaaa")]
+[@deriving gql(~name="aaaa")]
 type a = {
-  a: int,
-  b: string,
-};  */
+  a: y,
+  b: z,
+};  
 
 
 /* ModuleTest.a */
@@ -23,13 +21,13 @@ type a = {
 [@deriving gql(~name="Type1")] 
 type t = {
   a: option(list(array(option(ModuleTest.a)))),
-  b: ModuleTest.a,
-  c: y,
-  d: x
+  b: a,
+  c: x,
+  d: option(int)
 };
 
 print_endline("\n" ++ t_gql);
-print_endline("\n" ++ moduleTest_a_gql);
+print_endline("\n" ++ moduleTest_a_gql); 
 List.iter((item => print_endline(item)), record_types);
 
 

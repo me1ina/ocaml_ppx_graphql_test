@@ -22,9 +22,9 @@ let isModuleType =  (core_type, loc) => {
     };
   };
 
-let get_module =  (core_type, loc) => {
+let get_module = (core_type, loc) => {
     switch (core_type.ptyp_desc) {
-    | Ptyp_constr({txt: Ldot(Lident(module_name), type_name), _}, _) => [module_name,type_name]
+    | Ptyp_constr({txt: Ldot(Lident(module_name), type_name), _}, _) => [|module_name,type_name|]
     | _ => Location.raise_errorf(~loc, "Could not access module")
     };
 };
