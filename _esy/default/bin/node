@@ -1,4 +1,0 @@
-#!/bin/sh
-export ESY__NODE_BIN_PATH="/home/melina/ppx/ppxlib-simple-example/_esy/default/bin"
-exec "/usr/bin/node" -r "/home/melina/ppx/ppxlib-simple-example/_esy/default/pnp.js" "$@"
-              

@@ -1,2 +1,0 @@
-(** @canonical Ppx_deriving_accessors.Ppx *)
-module Ppx = Ppx_deriving_accessors__Ppx

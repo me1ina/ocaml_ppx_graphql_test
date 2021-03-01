@@ -1,0 +1,5 @@
+(** @canonical Dune__exe.ManualTest *)
+module ManualTest = Dune__exe__ManualTest
+
+(** @canonical Dune__exe.ModuleTest *)
+module ModuleTest = Dune__exe__ModuleTest

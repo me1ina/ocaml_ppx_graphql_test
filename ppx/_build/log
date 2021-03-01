@@ -1,0 +1,226 @@
+# /home/melina/.esy/3___________________________________________________________________/i/opam__s__dune-opam__c__2.7.1-a508933e/bin/dune build --promote-install-files --root .
+# OCAMLPARAM: unset
+# Workspace root: /home/melina/ppx/ocaml_ppx_graphql_test/ppx
+$ /usr/bin/nproc > /tmp/dune436085.output 2> /dev/null
+# Auto-detected concurrency: 1
+# disable binary cache
+$ /home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/bin/ocamlfind printconf path > /tmp/dunea3c3e6.output
+$ /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlc.opt -config > /tmp/dunee66d5f.output
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dyn
+#  ; merlin = true
+#  ; for_host = None
+#  ; fdo_target_exe = None
+#  ; build_dir = "default"
+#  ; toplevel_path =
+#      Some
+#        External
+#          "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/lib/ocaml"
+#  ; ocaml_bin =
+#      External
+#        "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin"
+#  ; ocaml =
+#      Ok
+#        External
+#          "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocaml"
+#  ; ocamlc =
+#      External
+#        "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlc.opt"
+#  ; ocamlopt =
+#      Ok
+#        External
+#          "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlopt.opt"
+#  ; ocamldep =
+#      Ok
+#        External
+#          "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamldep.opt"
+#  ; ocamlmklib =
+#      Ok
+#        External
+#          "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlmklib.opt"
+#  ; env =
+#      map
+#        { "INSIDE_DUNE" :
+#            "/home/melina/ppx/ocaml_ppx_graphql_test/ppx/_build/default"
+#        ; "MANPATH" :
+#            "/home/melina/ppx/ocaml_ppx_graphql_test/ppx/_build/install/default/bin"
+#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
+#            "/home/melina/ppx/ocaml_ppx_graphql_test/ppx/_build/install/default/lib"
+#        ; "OCAMLTOP_INCLUDE_PATH" :
+#            "/home/melina/ppx/ocaml_ppx_graphql_test/ppx/_build/install/default/lib/toplevel"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; findlib_path =
+#      [ External
+#          "/home/melina/.esy/3___________________________________________________________________/i/esy_ocaml__s__reason-b79b6ac8/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__dune-opam__c__2.7.1-a508933e/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__merlin-opam__c__3.4.2-c01fcc8b/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocaml_lsp_server-9848ea47/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocaml_migrate_parsetree-opam__c__1.8.0-a5ae5273/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ppxlib-opam__c__0.14.0-f48b23e4/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__rely-3.2.1-26465be4/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__fix-opam__c__20201120-36457285/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__menhir-opam__c__20201216-dfabb0ff/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__merlin_extend-opam__c__0.6-edf99903/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__result-opam__c__1.5-2b54f71c/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/esy_ocaml__s__substs-0.0.1-ed6217b4/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__base_threads-opam__c__base-f93e1d7d/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__base_unix-opam__c__base-dc4b97fb/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__csexp-opam__c__1.4.0-41f95ad8/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__dot_merlin_reader-opam__c__4.1-25e5eb66/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__yojson-opam__c__1.7.0-34749aa3/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__dune_build_info-opam__c__2.7.1-9f2dda8b/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ppx__yojson__conv__lib-opam__c__v0.14.0-51c820e6/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__stdlib_shims-opam__c__0.3.0-4baf027b/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ppx__derivers-opam__c__1.2.1-73046b6f/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__base-opam__c__v0.14.1-1c831516/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocaml_compiler_libs-opam__c__v0.12.3-db1bdd75/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__stdio-opam__c__v0.14.0-7602d15c/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__junit-opam__c__2.0.2-b4fb07a0/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__re-opam__c__1.9.0-235c45a5/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__cli-0.0.1-alpha-654dd654/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__file_context_printer-0.0.3-35d46e95/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__pastel-0.3.0-57a12620/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__menhirlib-opam__c__20201216-b1177f9c/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__menhirsdk-opam__c__20201216-19a3238b/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__cppo-opam__c__1.6.7-7cb82cea/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__conf_m4-opam__c__1-5891819f/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__biniou-opam__c__1.2.1-13fdbf76/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__easy_format-opam__c__1.3.2-998d2411/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__dune_configurator-opam__c__2.7.1-32676824/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__sexplib0-opam__c__v0.14.0-e6a7e89c/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ptime-opam__c__0.8.5-2603568c/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__tyxml-opam__c__4.4.0-95898822/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__seq-opam__c__base-ce36fff8/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/esy_m4-7776412b/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlbuild-opam__c__0.14.0-4ea4e0ed/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__topkg-opam__c__1.0.3-fe6a7f33/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__uutf-opam__c__1.0.2-1221a717/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__uchar-opam__c__0.0.2-cc2a1b22/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/lib"
+#      ]
+#  ; arch_sixtyfour = true
+#  ; natdynlink_supported = true
+#  ; supports_shared_libraries = true
+#  ; ocaml_config =
+#      { version = "4.10.0"
+#      ; standard_library_default =
+#          "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/lib/ocaml"
+#      ; standard_library =
+#          "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/lib/ocaml"
+#      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
+#      ; ccomp_type = "cc"
+#      ; c_compiler = "gcc"
+#      ; ocamlc_cflags = [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-fPIC" ]
+#      ; ocamlc_cppflags = [ "-D_FILE_OFFSET_BITS=64"; "-D_REENTRANT" ]
+#      ; ocamlopt_cflags = [ "-O2"; "-fno-strict-aliasing"; "-fwrapv" ]
+#      ; ocamlopt_cppflags = [ "-D_FILE_OFFSET_BITS=64"; "-D_REENTRANT" ]
+#      ; bytecomp_c_compiler =
+#          [ "gcc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-fPIC"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ; "-D_REENTRANT"
+#          ]
+#      ; bytecomp_c_libraries = [ "-lm"; "-ldl"; "-lpthread" ]
+#      ; native_c_compiler =
+#          [ "gcc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ; "-D_REENTRANT"
+#          ]
+#      ; native_c_libraries = [ "-lm"; "-ldl" ]
+#      ; cc_profile = []
+#      ; architecture = "amd64"
+#      ; model = "default"
+#      ; int_size = 63
+#      ; word_size = 64
+#      ; system = "linux"
+#      ; asm = [ "as" ]
+#      ; asm_cfi_supported = false
+#      ; with_frame_pointers = false
+#      ; ext_exe = ""
+#      ; ext_obj = ".o"
+#      ; ext_asm = ".s"
+#      ; ext_lib = ".a"
+#      ; ext_dll = ".so"
+#      ; os_type = "Unix"
+#      ; default_executable_name = "a.out"
+#      ; systhread_supported = true
+#      ; host = "x86_64-pc-linux-gnu"
+#      ; target = "x86_64-pc-linux-gnu"
+#      ; profiling = false
+#      ; flambda = false
+#      ; spacetime = false
+#      ; safe_string = true
+#      ; exec_magic_number = "Caml1999X027"
+#      ; cmi_magic_number = "Caml1999I027"
+#      ; cmo_magic_number = "Caml1999O027"
+#      ; cma_magic_number = "Caml1999A027"
+#      ; cmx_magic_number = "Caml1999Y027"
+#      ; cmxa_magic_number = "Caml1999Z027"
+#      ; ast_impl_magic_number = "Caml1999M027"
+#      ; ast_intf_magic_number = "Caml1999N027"
+#      ; cmxs_magic_number = "Caml1999D027"
+#      ; cmt_magic_number = "Caml1999T027"
+#      ; natdynlink_supported = true
+#      ; supports_shared_libraries = true
+#      ; windows_unicode = false
+#      }
+#  }

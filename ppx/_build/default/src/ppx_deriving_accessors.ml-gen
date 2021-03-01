@@ -1,0 +1,17 @@
+(** @canonical Ppx_deriving_accessors.Constants *)
+module Constants = Ppx_deriving_accessors__Constants
+
+(** @canonical Ppx_deriving_accessors.GenerateData *)
+module GenerateData = Ppx_deriving_accessors__GenerateData
+
+(** @canonical Ppx_deriving_accessors.Ppx *)
+module Ppx = Ppx_deriving_accessors__Ppx
+
+(** @canonical Ppx_deriving_accessors.RecTypes *)
+module RecTypes = Ppx_deriving_accessors__RecTypes
+
+(** @canonical Ppx_deriving_accessors.StructureData *)
+module StructureData = Ppx_deriving_accessors__StructureData
+
+(** @canonical Ppx_deriving_accessors.Utils *)
+module Utils = Ppx_deriving_accessors__Utils

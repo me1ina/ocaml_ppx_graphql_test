@@ -1,0 +1,51 @@
+lib: [
+  "_build/install/default/lib/DerivingGqlPpx/META"
+  "_build/install/default/lib/DerivingGqlPpx/dune-package"
+  "_build/install/default/lib/DerivingGqlPpx/lib/Constants.re" {"lib/Constants.re"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/GenerateData.re" {"lib/GenerateData.re"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/GenerateData.rei" {"lib/GenerateData.rei"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/Ppx.re" {"lib/Ppx.re"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/Ppx.rei" {"lib/Ppx.rei"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/RecTypes.re" {"lib/RecTypes.re"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/StructureData.re" {"lib/StructureData.re"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/StructureData.rei" {"lib/StructureData.rei"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/Utils.re" {"lib/Utils.re"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors.a" {"lib/ppx_deriving_accessors.a"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors.cma" {"lib/ppx_deriving_accessors.cma"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors.cmi" {"lib/ppx_deriving_accessors.cmi"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors.cmt" {"lib/ppx_deriving_accessors.cmt"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors.cmx" {"lib/ppx_deriving_accessors.cmx"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors.cmxa" {"lib/ppx_deriving_accessors.cmxa"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors.cmxs" {"lib/ppx_deriving_accessors.cmxs"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors.ml" {"lib/ppx_deriving_accessors.ml"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Constants.cmi" {"lib/ppx_deriving_accessors__Constants.cmi"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Constants.cmt" {"lib/ppx_deriving_accessors__Constants.cmt"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Constants.cmx" {"lib/ppx_deriving_accessors__Constants.cmx"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__GenerateData.cmi" {"lib/ppx_deriving_accessors__GenerateData.cmi"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__GenerateData.cmt" {"lib/ppx_deriving_accessors__GenerateData.cmt"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__GenerateData.cmti" {"lib/ppx_deriving_accessors__GenerateData.cmti"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__GenerateData.cmx" {"lib/ppx_deriving_accessors__GenerateData.cmx"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Ppx.cmi" {"lib/ppx_deriving_accessors__Ppx.cmi"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Ppx.cmt" {"lib/ppx_deriving_accessors__Ppx.cmt"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Ppx.cmti" {"lib/ppx_deriving_accessors__Ppx.cmti"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Ppx.cmx" {"lib/ppx_deriving_accessors__Ppx.cmx"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__RecTypes.cmi" {"lib/ppx_deriving_accessors__RecTypes.cmi"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__RecTypes.cmt" {"lib/ppx_deriving_accessors__RecTypes.cmt"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__RecTypes.cmx" {"lib/ppx_deriving_accessors__RecTypes.cmx"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__StructureData.cmi" {"lib/ppx_deriving_accessors__StructureData.cmi"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__StructureData.cmt" {"lib/ppx_deriving_accessors__StructureData.cmt"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__StructureData.cmti" {"lib/ppx_deriving_accessors__StructureData.cmti"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__StructureData.cmx" {"lib/ppx_deriving_accessors__StructureData.cmx"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Utils.cmi" {"lib/ppx_deriving_accessors__Utils.cmi"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Utils.cmt" {"lib/ppx_deriving_accessors__Utils.cmt"}
+  "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Utils.cmx" {"lib/ppx_deriving_accessors__Utils.cmx"}
+  "_build/install/default/lib/DerivingGqlPpx/opam"
+]
+bin: [
+  "_build/install/default/bin/ManualTest"
+  "_build/install/default/bin/deriving-gql-ppx"
+]
+doc: [
+  "_build/install/default/doc/DerivingGqlPpx/LICENSE"
+  "_build/install/default/doc/DerivingGqlPpx/README.md"
+]

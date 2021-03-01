@@ -1,0 +1,1 @@
+let basic_types = ["int", "string", "bool"];

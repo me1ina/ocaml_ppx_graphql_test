@@ -1,5 +1,0 @@
-# dune ocaml-merlin --no-print-directory
-# OCAMLPARAM: unset
-# Workspace root: /home/melina/ppx/ppxlib-gql
-$ /usr/bin/nproc > /tmp/dune250691.output 2> /dev/null
-# Auto-detected concurrency: 1

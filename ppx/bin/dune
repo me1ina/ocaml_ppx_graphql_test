@@ -1,0 +1,7 @@
+(executable
+  (name Bin)
+  (public_name deriving-gql-ppx)
+  (libraries DerivingGqlPpx.lib)
+  (ocamlopt_flags ( -linkall ))
+  (package DerivingGqlPpx)
+)

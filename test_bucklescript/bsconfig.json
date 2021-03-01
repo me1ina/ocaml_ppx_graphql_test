@@ -1,0 +1,22 @@
+{
+  "name": "test_bucklescript",
+  "version": "0.1.0",
+  "sources": {
+    "dir" : "src",
+    "subdirs" : true
+  },
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": [
+
+  ],
+  "ppx-flags": ["../ppx/_build/default/bin/Bin.exe"],
+  "warnings": {
+    "error" : "+101"
+  },
+  "namespace": true,
+  "refmt": 3
+}
