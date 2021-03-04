@@ -1,11 +1,11 @@
-# /home/melina/.esy/3___________________________________________________________________/i/opam__s__dune-opam__c__2.7.1-a508933e/bin/dune build --promote-install-files --root .
+# /home/melina/.esy/3___________________________________________________________________/i/opam__s__dune-opam__c__2.7.1-a508933e/bin/dune runtest
 # OCAMLPARAM: unset
 # Workspace root: /home/melina/ppx/ocaml_ppx_graphql_test/ppx
-$ /usr/bin/nproc > /tmp/dune436085.output 2> /dev/null
+$ /usr/bin/nproc > /tmp/duneff8058.output 2> /dev/null
 # Auto-detected concurrency: 1
 # disable binary cache
-$ /home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/bin/ocamlfind printconf path > /tmp/dunea3c3e6.output
-$ /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlc.opt -config > /tmp/dunee66d5f.output
+$ /home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/bin/ocamlfind printconf path > /tmp/duned3238c.output
+$ /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlc.opt -config > /tmp/dunec2ce0c.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -57,6 +57,8 @@ $ /home/melina/.esy/3___________________________________________________________
 #      [ External
 #          "/home/melina/.esy/3___________________________________________________________________/i/esy_ocaml__s__reason-b79b6ac8/lib"
 #      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib"
+#      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__dune-opam__c__2.7.1-a508933e/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__merlin-opam__c__3.4.2-c01fcc8b/lib"
@@ -67,7 +69,7 @@ $ /home/melina/.esy/3___________________________________________________________
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ppxlib-opam__c__0.14.0-f48b23e4/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__rely-3.2.1-26465be4/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__rely-3.2.1-a22cfd49/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/lib"
 #      ; External
@@ -83,6 +85,20 @@ $ /home/melina/.esy/3___________________________________________________________
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/esy_ocaml__s__substs-0.0.1-ed6217b4/lib"
 #      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__astring-opam__c__0.8.5-05af7f29/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__cmdliner-opam__c__1.0.4-b02e1a36/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__fmt-opam__c__0.8.9-84546281/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__re-opam__c__1.9.0-235c45a5/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__stdlib_shims-opam__c__0.3.0-4baf027b/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__uuidm-opam__c__0.9.7-c8bcf869/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__uutf-opam__c__1.0.2-5f89e98a/lib"
+#      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__base_threads-opam__c__base-f93e1d7d/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__base_unix-opam__c__base-dc4b97fb/lib"
@@ -97,8 +113,6 @@ $ /home/melina/.esy/3___________________________________________________________
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ppx__yojson__conv__lib-opam__c__v0.14.0-51c820e6/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__stdlib_shims-opam__c__0.3.0-4baf027b/lib"
-#      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ppx__derivers-opam__c__1.2.1-73046b6f/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__base-opam__c__v0.14.1-1c831516/lib"
@@ -107,9 +121,7 @@ $ /home/melina/.esy/3___________________________________________________________
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__stdio-opam__c__v0.14.0-7602d15c/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__junit-opam__c__2.0.2-b4fb07a0/lib"
-#      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__re-opam__c__1.9.0-235c45a5/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__junit-opam__c__2.0.2-5d326011/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__cli-0.0.1-alpha-654dd654/lib"
 #      ; External
@@ -125,6 +137,14 @@ $ /home/melina/.esy/3___________________________________________________________
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__conf_m4-opam__c__1-5891819f/lib"
 #      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlbuild-opam__c__0.14.0-4ea4e0ed/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__topkg-opam__c__1.0.3-fe6a7f33/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__seq-opam__c__base-ce36fff8/lib"
+#      ; External
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__uchar-opam__c__0.0.2-cc2a1b22/lib"
+#      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__biniou-opam__c__1.2.1-13fdbf76/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__easy_format-opam__c__1.3.2-998d2411/lib"
@@ -135,19 +155,9 @@ $ /home/melina/.esy/3___________________________________________________________
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ptime-opam__c__0.8.5-2603568c/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__tyxml-opam__c__4.4.0-95898822/lib"
-#      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__seq-opam__c__base-ce36fff8/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__tyxml-opam__c__4.4.0-8b77b2e4/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/esy_m4-7776412b/lib"
-#      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlbuild-opam__c__0.14.0-4ea4e0ed/lib"
-#      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__topkg-opam__c__1.0.3-fe6a7f33/lib"
-#      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__uutf-opam__c__1.0.2-1221a717/lib"
-#      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__uchar-opam__c__0.0.2-cc2a1b22/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/lib"
 #      ]
@@ -224,3 +234,30 @@ $ /home/melina/.esy/3___________________________________________________________
 #      ; windows_unicode = false
 #      }
 #  }
+$ (cd _build/default/tests && ./simple.exe)
+> Testing `Simple tests'.
+> This run has ID `AB800E43-0A00-4808-AB50-BB3A986AE244'.
+>
+>   [OK]          Edge cases            0   NaN.
+>   [OK]          Edge cases            1   ∞.
+> > [FAIL]        Other floats          0   others.
+>
+> ┌──────────────────────────────────────────────────────────────────────────────┐
+> │ [FAIL]        Other floats          0   others.                              │
+> └──────────────────────────────────────────────────────────────────────────────┘
+> ASSERT 0 is 0
+> ASSERT 0 is epsilon
+> ASSERT 0 is not 1
+> ASSERT 1 is not 0
+> ASSERT .3 is .3
+> FAIL .3 is .3
+>
+>    Expected: `0.3'
+>    Received: `0.4'
+>
+> Logs saved to `~/ppx/ocaml_ppx_graphql_test/ppx/_build/default/tests/_build/_tests/Simple tests/Other floats.000.output'.
+>  ──────────────────────────────────────────────────────────────────────────────
+>
+> Full test results in `~/ppx/ocaml_ppx_graphql_test/ppx/_build/default/tests/_build/_tests/Simple tests'.
+> 1 failure! in 0.000s. 3 tests run.
+[1]

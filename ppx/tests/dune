@@ -1,0 +1,4 @@
+(tests
+ (names simple)
+ (package DerivingGqlPpx)
+ (libraries alcotest))
