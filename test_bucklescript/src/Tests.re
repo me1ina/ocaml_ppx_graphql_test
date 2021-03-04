@@ -1,12 +1,12 @@
-[@scope "process"] [@val] external exit: int => unit = "exit";
-[@scope "Error"] [@val]
+[@bs.scope "process"] [@bs.val] external exit: int => unit = "exit";
+[@bs.scope "Error"] [@bs.val]
 external captureStackTrace: Js.t({..}) => unit = "captureStackTrace";
-[@module "@babel/code-frame"] [@val]
+[@bs.module "@babel/code-frame"] [@bs.val]
 external codeFrameColumns: (string, Js.t({..}), Js.t({..})) => string =
   "codeFrameColumns";
-[@module "fs"] [@val]
+[@bs.module "fs"] [@bs.val]
 external readFileSync: (string, Js.t({..})) => string = "readFileSync";
-[@module "path"] [@val] external join: (string, string) => string = "join";
+[@bs.module "path"] [@bs.val] external join: (string, string) => string = "join";
 
 let dirname =
   switch ([%external __dirname]) {
