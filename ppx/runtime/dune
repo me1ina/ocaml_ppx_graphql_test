@@ -1,0 +1,4 @@
+(library
+ (name ppx_deriving_runtime)
+ (public_name DerivingGqlPpx.runtime)
+ (libraries str))

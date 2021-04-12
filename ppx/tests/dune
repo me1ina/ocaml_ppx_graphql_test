@@ -1,4 +1,8 @@
 (tests
  (names simple)
  (package DerivingGqlPpx)
- (libraries alcotest))
+ (preprocess
+ (pps DerivingGqlPpx.lib)
+ )
+ (libraries alcotest str DerivingGqlPpx.runtime)
+ )

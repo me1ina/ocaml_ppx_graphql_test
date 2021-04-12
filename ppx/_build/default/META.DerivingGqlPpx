@@ -2,7 +2,7 @@ package "lib" (
   directory = "lib"
   version = "0.0.4"
   description = ""
-  requires(ppx_driver) = "ppxlib"
+  requires(ppx_driver) = "DerivingGqlPpx.runtime ppxlib str"
   archive(ppx_driver,byte) = "ppx_deriving_accessors.cma"
   archive(ppx_driver,native) = "ppx_deriving_accessors.cmxa"
   plugin(ppx_driver,byte) = "ppx_deriving_accessors.cma"
@@ -13,4 +13,14 @@ package "lib" (
   requires(-ppx_driver,-custom_ppx) += "ppx_deriving"
   ppxopt(-ppx_driver,-custom_ppx) = "ppx_deriving,package:DerivingGqlPpx.lib"
   library_kind = "ppx_deriver"
+)
+package "runtime" (
+  directory = "runtime"
+  version = "0.0.4"
+  description = ""
+  requires = "str"
+  archive(byte) = "ppx_deriving_runtime.cma"
+  archive(native) = "ppx_deriving_runtime.cmxa"
+  plugin(byte) = "ppx_deriving_runtime.cma"
+  plugin(native) = "ppx_deriving_runtime.cmxs"
 )

@@ -151,3 +151,194 @@ RECORD TO ACCESSOR IMPL & INTF
       ~str_type_decl=impl_generator,
       ~sig_type_decl=intf_generator,
     );
+
+ALIAS STRUCTURE ITEM HELPER:
+([%e
+    eapply(
+      ~loc,
+      evar(~loc, "String.get"),
+      [
+        evar(~loc, type_name ++ "_gql"),
+        eapply(
+          ~loc,
+          evar(~loc, "-"),
+          [
+            eapply(
+              ~loc,
+              evar(~loc, "int_of_string"),
+              [
+                eapply(
+                  ~loc,
+                  evar(~loc, "String.length"),
+                  [
+                    evar(~loc, type_name ++ "_gql")
+                  ],
+                )
+              ],
+            ), 
+            eapply(
+              ~loc,
+              evar(~loc, "int_of_string"),
+              [
+                evar(~loc, "1")
+              ],
+            ) 
+          ],
+        ),
+      ],
+    ) 
+  ] == '!') ? [%e
+    eapply(
+      ~loc,
+      evar(~loc, "String.sub"),
+      [
+        evar(~loc, type_name ++ "_gql"),
+        eapply(
+          ~loc,
+          evar(~loc, "int_of_string"),
+          [
+            estring(~loc, "0")
+          ],
+        ),
+        eapply(
+          ~loc,
+          evar(~loc, "String.length"),
+          [
+            evar(~loc, type_name ++ "_gql")
+          ],
+        ),
+      ],
+    ) 
+  ] : [%e evar(~loc, type_name ++ "_gql")] ++ [%e estring(~loc, "!")]; 
+
+  PRINT RECTYPES VARIANT TYPE:
+    let rec recorditem_expression:(detectableTypes) => string =
+      (generated_data) => {
+        switch (generated_data) {
+          | Option(detectableTypes) =>
+            "option " ++ recorditem_expression(detectableTypes)
+          | Array(detectableTypes) =>
+            "array " ++ recorditem_expression(detectableTypes)
+          | Module(module_name, type_name) =>
+            "module(" ++ module_name ++ ", " ++ type_name ++ ")"
+          | Alias(type_name) => "alias(" ++ type_name ++ ")"
+          | String => "string"
+          | Integer => "int"
+          | Bool => "bool"
+          | Record(_) => "error:record"
+        };
+    };
+
+OLD PPX WITHOUT STRUCTURED DATA:
+  let recordContainsOnlyBasicTypes = (lds, loc): bool => {
+    lds
+    |> List.fold_left(
+          (acc, ld) => acc && Utils.isBasicTypeRec(ld.pld_type.ptyp_desc, loc),
+          true,
+        );
+  };
+
+  let record_accessor_impl =
+      (lds: list(label_declaration), type_name: string, payload, loc): list(structure_item) => {
+
+      let record_struct_item = recordContainsOnlyBasicTypes(lds, loc) ? [Ppx_basicTypes.structure_item_with_basic_types(lds, type_name, payload, loc)] : Ppx_aliasTypes.structure_item_with_alias_types(lds, type_name, payload, loc);
+
+      let record_name_struct_item = [[%stri let [%p pvar(~loc, "record_types")] = [%e evar(~loc, "record_types")] @ [[%e estring(~loc, type_name |> String.capitalize_ascii)]]]];
+
+      record_struct_item |> List.append(record_name_struct_item);
+  }
+
+
+  let generate_impl = (~ctxt, (_rec_flag, type_declarations), payload) => {
+    let loc = Expansion_context.Deriver.derived_item_loc(ctxt);
+    let payload_string =
+      switch (payload){
+        | Some(payload) => payload
+        | _ => ""
+  }
+    ListLabels.map(type_declarations, ~f=(td: type_declaration) =>
+      switch (td) {
+      | {ptype_kind: Ptype_variant(_) | Ptype_open, _} =>
+        Location.raise_errorf(
+          ~loc,
+          "Cannot derive accessors for non record types",
+        )
+      | {ptype_kind: Ptype_abstract, ptype_manifest, ptype_name, ptype_loc, _} =>
+        switch (ptype_manifest) {
+        | Some(core_type) =>
+          Ppx_aliasTypes.abstract_accessor_impl(core_type, ptype_name.txt, ptype_loc)
+        | _ => Location.raise_errorf(~loc, "No type found")
+        }
+
+      | {ptype_kind: Ptype_record(fields), ptype_name, ptype_loc, _} =>
+          record_accessor_impl(fields, ptype_name.txt, payload_string, ptype_loc)
+
+      }
+    ) |> List.concat;
+  };
+
+ALCOTEST HELPER: 
+  let e = epsilon_float;
+
+  let nan = () => {
+    Alcotest.(check @@ float(e))("NaN is NaN", nan, nan);
+    Alcotest.(check @@ neg @@ float(e))("NaN is not number", nan, 7.);
+    Alcotest.(check @@ neg @@ float(e))("number is not NaN", 8., nan);
+  };
+
+  let infinity = () => {
+    Alcotest.(check @@ float(e))("+∞ is +∞", infinity, infinity);
+    Alcotest.(check @@ float(e))("-∞ is -∞", neg_infinity, neg_infinity);
+    Alcotest.(check @@ neg @@ float(e))(
+      "+∞ is not -∞",
+      infinity,
+      neg_infinity,
+    );
+    Alcotest.(check @@ neg @@ float(e))(
+      "-∞ is not +∞",
+      neg_infinity,
+      infinity,
+    );
+    Alcotest.(check @@ neg @@ float(e))("+∞ is not 3", infinity, 3.);
+  };
+
+  let others = () => {
+    Alcotest.(check @@ float(e))("0 is 0", 0., 0.);
+    Alcotest.(check @@ float(e))("0 is epsilon", 0., e);
+    Alcotest.(check @@ neg @@ float(e))("0 is not 1", 0., 1.);
+    Alcotest.(check @@ neg @@ float(e))("1 is not 0", 1., 0.);
+    Alcotest.(check @@ float(e))(".3 is .3", 0.1 +. 0.2, 0.4);
+  };
+
+  let edge_set = [("NaN", `Quick, nan), ("∞", `Quick, infinity)];
+
+  let others_set = [("others", `Quick, others)];
+
+  let () =
+    Alcotest.run(
+      "Simple tests",
+      [("Edge cases", edge_set), ("Other floats", others_set)],
+    );
+
+ALCOTEST RUN: 
+  let stringEquals = (a, b) => String.compare(a, b) == 0;
+
+  let gqlTest: (module GqlTest) => unit =
+    testCase => {
+      let (module GqlTest) = testCase;
+      Tests.run(GqlTest.name, GqlTest.test_gql, stringEquals, GqlTest.expected);
+    };
+
+  let run = () => {
+    print_endline("run tests");
+    (
+      [|
+        (module TestString) /*
+        module(TestRecord),
+        module(TestCombined) */
+      |]:
+        array(module GqlTest)
+    )
+    ->Belt.Array.forEach(testCase => gqlTest(testCase));
+  };
+  run();

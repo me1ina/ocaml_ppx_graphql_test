@@ -1,18 +1,17 @@
 open RecTypes;
 open Ppxlib;
 
-let rec convert_nested_core_types =
-        (core_types, type_name, loc): detectableTypes =>
-  if (core_types
-      |> List.length == 1
-      && Utils.isModuleType(core_types |> List.hd, loc)) {
-    let module_name = Utils.get_module(core_types |> List.hd, loc)[0];
-    let type_name = Utils.get_module(core_types |> List.hd, loc)[1];
-    Module(module_name, type_name);
+let rec convert_nested_core_types = (core_types, type_name, loc): detectableTypes => {
+  let core_type_string = 
+    if (core_types
+        |> List.length == 1
+        && Utils.isModuleType(core_types |> List.hd, loc)) {
+          "module"
+  } else if (core_types |> List.length == 1) {
+        Utils.extract_string_from_core_type(core_types |> List.hd, loc);
   } else {
-    let core_type_string =
-      core_types |> List.length == 1
-        ? Utils.extract_string_from_core_type(core_types |> List.hd, loc) : "";
+    ""
+  };
 
     switch (type_name) {
     | "int" => Integer
@@ -22,7 +21,7 @@ let rec convert_nested_core_types =
       core_type_string != ""
         ? Option(
             convert_nested_core_types(
-              List.mem(core_type_string, Constants.basic_types)
+              (List.mem(core_type_string, Constants.basic_types) || core_type_string == "module")
                 ? core_types : Utils.get_core_type(core_types |> List.hd, loc),
               core_type_string,
               loc,
@@ -33,12 +32,17 @@ let rec convert_nested_core_types =
     | "array" =>
       Array(
         convert_nested_core_types(
-          List.mem(core_type_string, Constants.basic_types)
+          (List.mem(core_type_string, Constants.basic_types) || core_type_string == "module")
             ? core_types : Utils.get_core_type(core_types |> List.hd, loc),
           core_type_string,
           loc,
         ),
       )
+    | "module" => {
+      let module_name = Utils.get_module(core_types |> List.hd, loc)[0];
+      let type_name = Utils.get_module(core_types |> List.hd, loc)[1];
+      Module(module_name, type_name);
+    }
     | _ => Alias(type_name)
     };
   };

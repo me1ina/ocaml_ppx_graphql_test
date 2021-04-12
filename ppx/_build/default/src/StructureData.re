@@ -53,58 +53,88 @@ module ExtractExpression = {
       };
 };
 
-let alias_type_expression = (type_name, loc) => {
+let alias_type_expression = (type_name, opt, loc, _isAbstr) => {
   switch%expr (
     [%e
       eapply(
         ~loc,
-        evar(~loc, "StringSet.mem"),
+        evar(~loc, "Ppx_deriving_runtime.GraphQLppxSet.check_if_rec_type"),
         [
+          evar(~loc, "__MODULE__"),
           estring(~loc, type_name |> String.capitalize_ascii),
-          evar(~loc, "rec_types"),
         ],
       )
     ]
   ) {
   | true =>
-    %e
-    estring(~loc, type_name |> String.capitalize_ascii)
-  | false =>
-    %e
-    evar(~loc, type_name ++ "_gql")
+    [%e
+    estring(~loc, type_name |> String.capitalize_ascii)] ++ [%e estring(~loc, opt?"":"!")]
+  | false => 
+    if(
+    ([%e eapply(
+      ~loc,
+      evar(~loc, "String.get"),
+      [
+        evar(~loc, type_name ++ "_gql"),
+        [%expr -1 + [%e eapply(
+          ~loc,
+          evar(~loc, "String.length"),
+          [
+            evar(~loc, type_name ++ "_gql")
+          ],
+        )]], 
+      ])]
+    == '!') && [%e ebool(~loc, opt)]
+    ) 
+    {
+      [%e eapply(
+      ~loc,
+      evar(~loc, "String.sub"),
+      [
+        evar(~loc, type_name ++ "_gql"),
+        eint(~loc, 0),
+        [%expr -1 + [%e eapply(
+          ~loc,
+          evar(~loc, "String.length"),
+          [
+            evar(~loc, type_name ++ "_gql")
+          ],
+        )]], 
+      ])]
+    } else {[%e evar(~loc, type_name ++ "_gql")]}
   };
 };
 
-let get_module_expression = (module_name, type_name, loc): ExtractExpression.t => {
+
+let get_module_expression = (module_name, type_name, opt, loc): ExtractExpression.t => {
+
   let module_structur_item_list = [
     [%stri
-      let [%p pvar(~loc, "rec_types")] =
-        [%e
+        if([%e
           eapply(
             ~loc,
-            evar(~loc, "StringSet.mem"),
+            evar(~loc, "Ppx_deriving_runtime.GraphQLppxSet.check_if_rec_type"),
             [
+              estring(~loc, "Dune__exe__" ++ module_name),
               estring(~loc, type_name |> String.capitalize_ascii),
-              evar(~loc, module_name ++ ".rec_types"),
             ],
           )
-        ]
-          ? [%e
+        ]) {
+          [%e
             eapply(
               ~loc,
-              evar(~loc, "StringSet.add"),
+              evar(~loc, "Ppx_deriving_runtime.GraphQLppxSet.add_rec_type"),
               [
+                evar(~loc, "__MODULE__"),
                 estring(
                   ~loc,
                   (module_name |> String.uncapitalize_ascii)
                   ++ "_"
-                  ++ type_name,
+                  ++ (type_name |> String.capitalize_ascii),
                 ),
-                evar(~loc, "rec_types"),
               ],
             )
-          ]
-          : [%e evar(~loc, "rec_types")]
+          ]}
     ],
     [%stri
       let [%p
@@ -121,53 +151,86 @@ let get_module_expression = (module_name, type_name, loc): ExtractExpression.t =
     ],
   ];
 
-  let expression =
-    switch%expr (
-      [%e
-        eapply(
-          ~loc,
-          evar(~loc, "StringSet.mem"),
-          [
-            estring(~loc, type_name |> String.capitalize_ascii),
-            evar(~loc, module_name ++ ".rec_types"),
-          ],
-        )
-      ]
-    ) {
-    | true =>
+  let expression = if%expr (
+    [%e
+    eapply(
+      ~loc,
+      evar(~loc, "Ppx_deriving_runtime.GraphQLppxSet.check_if_rec_type"),
+      [
+        estring(~loc, "Dune__exe__" ++ module_name),
+        estring(~loc, type_name |> String.capitalize_ascii),
+      ],
+    )]) {
       %e
       estring(
         ~loc,
-        module_name ++ "_" ++ type_name |> String.capitalize_ascii,
+        module_name ++ "_" ++ (type_name |> String.capitalize_ascii) ++ (opt ? "" : "!"),
       )
-    | false =>
-      [%e
+    } else if 
+      ([%e
         eapply(
           ~loc,
-          evar(~loc, "StringSet.mem"),
+          evar(~loc, "Ppx_deriving_runtime.GraphQLppxSet.check_if_rec_type"),
           [
-            evar(~loc, module_name ++ "." ++ type_name ++ "_gql"),
-            evar(~loc, module_name ++ ".rec_types"),
+            estring(~loc, "Dune__exe__" ++ module_name),
+            eapply(
+            ~loc,
+            evar(~loc, "Str.global_replace"),
+          [
+            eapply(
+            ~loc,
+            evar(~loc, "Str.regexp"),
+          [
+            estring(~loc, "\\(\\[*\\)\\([A-Za-z_]+\\)\\(\\]\\|!\\)*"),
+          ],
+          ),
+            estring(~loc, "\\2"),
+            evar(~loc, module_name ++ "." ++ type_name ++ "_gql")
+          ],
+        ),
           ],
         )
-      ]
-        ? [%e estring(~loc, module_name ++ "_")]
-          ++ [%e evar(~loc, module_name ++ "." ++ type_name ++ "_gql")]
-        : [%e evar(~loc, module_name ++ "." ++ type_name ++ "_gql")]
+      ]) { 
+        let type_name_str_expr = [%e
+            eapply(
+            ~loc,
+            evar(~loc, "Str.global_replace"),
+          [
+            eapply(
+            ~loc,
+            evar(~loc, "Str.regexp"),
+          [
+            estring(~loc, ("\\(\\.*\\)\\([A-Za-z_]+\\)\\(\\.*\\)") ),
+          ]),
+            estring(~loc, "\\1" ++ module_name ++ "_\\2"),
+            evar(~loc, module_name ++ "." ++ type_name ++ "_gql")
+          ],
+        )
+        ]; 
+        [%e eapply(~loc, evar(~loc, "Ppx_deriving_runtime.GraphQLppxExpr.check_if_option"), [
+          [%expr type_name_str_expr],
+          ebool(~loc, opt)
+        ])]
+    } else {
+      let type_name_str_expr = [%e evar(~loc, module_name ++ "." ++ type_name ++ "_gql")];
+      [%e eapply(~loc, evar(~loc, "Ppx_deriving_runtime.GraphQLppxExpr.check_if_option"), [
+          [%expr type_name_str_expr],
+          ebool(~loc, opt)
+        ])]
     };
 
   ExpressionAndStructureItems(expression, module_structur_item_list);
 };
 
 let rec extract_expression:
-  (detectableTypes, ~isOptional: bool, ~loc: location) => ExtractExpression.t =
-  (generated_data, ~isOptional as opt, ~loc) => {
+  (detectableTypes, ~isOptional: bool, ~loc: location, ~isAbstr: bool) => ExtractExpression.t =
+  (generated_data, ~isOptional as opt, ~loc, ~isAbstr) => {
     switch (generated_data) {
     | Option(detectableTypes) =>
-      extract_expression(detectableTypes, ~isOptional=true, ~loc)
+      extract_expression(detectableTypes, ~isOptional=true, ~loc, ~isAbstr)
     | Array(detectableTypes) =>
       let extractedType =
-        extract_expression(detectableTypes, ~isOptional=false, ~loc);
+        extract_expression(detectableTypes, ~isOptional=false, ~loc, ~isAbstr);
       let makeExpr = expr => {
         %expr
         [%e estring(~loc, "[")]
@@ -176,8 +239,8 @@ let rec extract_expression:
       };
       ExtractExpression.map(extractedType, makeExpr);
     | Module(module_name, type_name) =>
-      get_module_expression(module_name, type_name, loc)
-    | Alias(type_name) => Expression(alias_type_expression(type_name, loc))
+      get_module_expression(module_name, type_name, opt, loc)
+    | Alias(type_name) => Expression(alias_type_expression(type_name, opt, loc, isAbstr))
     | String =>
       Expression([%expr [%e estring(~loc, "String" ++ (opt ? "" : "!"))]])
     | Integer =>
@@ -189,17 +252,20 @@ let rec extract_expression:
     };
   };
 
+
 let label_expression = (recordItem, loc) => {
+
   let extracted_recordItem_type_expression =
-    extract_expression(recordItem.type_, ~isOptional=false, ~loc);
+    extract_expression(recordItem.type_, ~isOptional=false, ~loc, ~isAbstr=false);
   let record_field_name = " " ++ recordItem.propertyName ++ ": ";
   let makeExpr = expr => [%expr
     [%e estring(~loc, record_field_name)]
-    ++ [%e expr /*extracted_recordItem_type_expression*/]
+    ++ [%e expr]
     ++ [%e estring(~loc, "\n")]
   ];
   ExtractExpression.map(extracted_recordItem_type_expression, makeExpr);
 };
+
 
 let extractedExpressions = (generated_data, loc) =>
   switch (generated_data) {
@@ -217,18 +283,19 @@ let extractedExpressions = (generated_data, loc) =>
   | _ => Location.raise_errorf(~loc, "error with generated_data")
   };
 
+
+
 let create_structure_item_list = (loc, generated_data, type_name, name) => {
+
   let record_name_struct_item = [%stri
-    let [%p pvar(~loc, "rec_types")] = [%e
-      eapply(
-        ~loc,
-        evar(~loc, "StringSet.add"),
-        [
-          estring(~loc, type_name |> String.capitalize_ascii),
-          evar(~loc, "rec_types"),
-        ],
-      )
-    ]
+    [%e eapply(
+      ~loc,
+      evar(~loc, "Ppx_deriving_runtime.GraphQLppxSet.add_rec_type"),
+      [
+        evar(~loc, "__MODULE__"),
+        estring(~loc, type_name),
+      ],
+    )]
   ];
 
   let expressions =
@@ -255,9 +322,10 @@ let create_structure_item_list = (loc, generated_data, type_name, name) => {
   ];
 };
 
+
 let create_abstract_structure_item = (loc, generated_data, type_name) => {
   let extracted_expr =
-    extract_expression(generated_data, ~isOptional=false, ~loc);
+    extract_expression(generated_data, ~isOptional=false, ~loc, ~isAbstr=true);
   [
     [%stri
       let [%p pvar(~loc, type_name ++ "_gql")] = [%e

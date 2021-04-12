@@ -40,6 +40,22 @@ lib: [
   "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Utils.cmt" {"lib/ppx_deriving_accessors__Utils.cmt"}
   "_build/install/default/lib/DerivingGqlPpx/lib/ppx_deriving_accessors__Utils.cmx" {"lib/ppx_deriving_accessors__Utils.cmx"}
   "_build/install/default/lib/DerivingGqlPpx/opam"
+  "_build/install/default/lib/DerivingGqlPpx/runtime/GraphQLppxExpr.re" {"runtime/GraphQLppxExpr.re"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/GraphQLppxSet.re" {"runtime/GraphQLppxSet.re"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime.a" {"runtime/ppx_deriving_runtime.a"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime.cma" {"runtime/ppx_deriving_runtime.cma"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime.cmi" {"runtime/ppx_deriving_runtime.cmi"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime.cmt" {"runtime/ppx_deriving_runtime.cmt"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime.cmx" {"runtime/ppx_deriving_runtime.cmx"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime.cmxa" {"runtime/ppx_deriving_runtime.cmxa"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime.cmxs" {"runtime/ppx_deriving_runtime.cmxs"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime.ml" {"runtime/ppx_deriving_runtime.ml"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime__GraphQLppxExpr.cmi" {"runtime/ppx_deriving_runtime__GraphQLppxExpr.cmi"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime__GraphQLppxExpr.cmt" {"runtime/ppx_deriving_runtime__GraphQLppxExpr.cmt"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime__GraphQLppxExpr.cmx" {"runtime/ppx_deriving_runtime__GraphQLppxExpr.cmx"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime__GraphQLppxSet.cmi" {"runtime/ppx_deriving_runtime__GraphQLppxSet.cmi"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime__GraphQLppxSet.cmt" {"runtime/ppx_deriving_runtime__GraphQLppxSet.cmt"}
+  "_build/install/default/lib/DerivingGqlPpx/runtime/ppx_deriving_runtime__GraphQLppxSet.cmx" {"runtime/ppx_deriving_runtime__GraphQLppxSet.cmx"}
 ]
 bin: [
   "_build/install/default/bin/ManualTest"

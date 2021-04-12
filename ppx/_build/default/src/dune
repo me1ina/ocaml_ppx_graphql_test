@@ -3,4 +3,4 @@
  (preprocess (pps ppxlib.metaquot))
  (public_name DerivingGqlPpx.lib)
  (kind ppx_deriver)
- (libraries ppxlib))
+ (libraries ppxlib str DerivingGqlPpx.runtime))

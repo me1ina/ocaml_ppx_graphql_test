@@ -1,11 +1,11 @@
 # /home/melina/.esy/3___________________________________________________________________/i/opam__s__dune-opam__c__2.7.1-a508933e/bin/dune runtest
 # OCAMLPARAM: unset
 # Workspace root: /home/melina/ppx/ocaml_ppx_graphql_test/ppx
-$ /usr/bin/nproc > /tmp/duneff8058.output 2> /dev/null
+$ /usr/bin/nproc > /tmp/dunefd259e.output 2> /dev/null
 # Auto-detected concurrency: 1
 # disable binary cache
-$ /home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/bin/ocamlfind printconf path > /tmp/duned3238c.output
-$ /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlc.opt -config > /tmp/dunec2ce0c.output
+$ /home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/bin/ocamlfind printconf path > /tmp/duneff7344.output
+$ /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlc.opt -config > /tmp/dune058cf2.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -55,7 +55,7 @@ $ /home/melina/.esy/3___________________________________________________________
 #        }
 #  ; findlib_path =
 #      [ External
-#          "/home/melina/.esy/3___________________________________________________________________/i/esy_ocaml__s__reason-b79b6ac8/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/esy_ocaml__s__reason-63e73579/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib"
 #      ; External
@@ -63,19 +63,19 @@ $ /home/melina/.esy/3___________________________________________________________
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__merlin-opam__c__3.4.2-c01fcc8b/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocaml_lsp_server-9848ea47/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocaml_lsp_server-59a22e32/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ocaml_migrate_parsetree-opam__c__1.8.0-a5ae5273/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__ppxlib-opam__c__0.14.0-f48b23e4/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__rely-3.2.1-a22cfd49/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__rely-3.2.1-8e1d6525/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__fix-opam__c__20201120-36457285/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__menhir-opam__c__20201216-dfabb0ff/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__menhir-opam__c__20210310-20024841/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__merlin_extend-opam__c__0.6-edf99903/lib"
 #      ; External
@@ -123,15 +123,15 @@ $ /home/melina/.esy/3___________________________________________________________
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__junit-opam__c__2.0.2-5d326011/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__cli-0.0.1-alpha-654dd654/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__cli-0.0.1-alpha-067b721e/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__file_context_printer-0.0.3-35d46e95/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__file_context_printer-0.0.3-d2516f74/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__pastel-0.3.0-57a12620/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/reason_native__s__pastel-0.3.0-3848ca90/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__menhirlib-opam__c__20201216-b1177f9c/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__menhirlib-opam__c__20210310-79d45153/lib"
 #      ; External
-#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__menhirsdk-opam__c__20201216-19a3238b/lib"
+#          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__menhirsdk-opam__c__20210310-3f92886e/lib"
 #      ; External
 #          "/home/melina/.esy/3___________________________________________________________________/i/opam__s__cppo-opam__c__1.6.7-7cb82cea/lib"
 #      ; External
@@ -234,30 +234,35 @@ $ /home/melina/.esy/3___________________________________________________________
 #      ; windows_unicode = false
 #      }
 #  }
+$ (cd _build/default && /home/melina/.esy/3___________________________________________________________________/i/esy_ocaml__s__reason-63e73579/bin/refmt --print binary tests/AliasTests.re) > _build/default/tests/AliasTests.re.ml
+$ (cd _build/default && .ppx/74a5cf079c2d567aaea47b986eda2499/ppx.exe -o tests/AliasTests.re.pp.ml --impl tests/AliasTests.re.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
+$ (cd _build/default && /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamldep.opt -modules -impl tests/AliasTests.re.pp.ml) > _build/default/tests/.simple.eobjs/AliasTests.re.pp.ml.d
+$ (cd _build/default && /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I tests/.simple.eobjs/byte -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib/alcotest -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib/alcotest/engine -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__astring-opam__c__0.8.5-05af7f29/lib/astring -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__cmdliner-opam__c__1.0.4-b02e1a36/lib/cmdliner -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__fmt-opam__c__0.8.9-84546281/lib/fmt -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/lib/bytes -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__re-opam__c__1.9.0-235c45a5/lib/re -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__seq-opam__c__base-ce36fff8/lib/seq -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__stdlib_shims-opam__c__0.3.0-4baf027b/lib/stdlib-shims -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uchar-opam__c__0.0.2-cc2a1b22/lib/uchar -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uuidm-opam__c__0.9.7-c8bcf869/lib/uuidm -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uutf-opam__c__1.0.2-5f89e98a/lib/uutf -I runtime/.ppx_deriving_runtime.objs/byte -I runtime/.ppx_deriving_runtime.objs/native -no-alias-deps -opaque -open Dune__exe -o tests/.simple.eobjs/byte/dune__exe__AliasTests.cmo -c -impl tests/AliasTests.re.pp.ml)
+$ (cd _build/default && /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I tests/.simple.eobjs/byte -I tests/.simple.eobjs/native -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib/alcotest -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib/alcotest/engine -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__astring-opam__c__0.8.5-05af7f29/lib/astring -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__cmdliner-opam__c__1.0.4-b02e1a36/lib/cmdliner -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__fmt-opam__c__0.8.9-84546281/lib/fmt -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/lib/bytes -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__re-opam__c__1.9.0-235c45a5/lib/re -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__seq-opam__c__base-ce36fff8/lib/seq -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__stdlib_shims-opam__c__0.3.0-4baf027b/lib/stdlib-shims -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uchar-opam__c__0.0.2-cc2a1b22/lib/uchar -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uuidm-opam__c__0.9.7-c8bcf869/lib/uuidm -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uutf-opam__c__1.0.2-5f89e98a/lib/uutf -I runtime/.ppx_deriving_runtime.objs/byte -I runtime/.ppx_deriving_runtime.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Dune__exe -o tests/.simple.eobjs/native/dune__exe__AliasTests.cmx -c -impl tests/AliasTests.re.pp.ml)
+$ (cd _build/default && /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I tests/.simple.eobjs/byte -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib/alcotest -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib/alcotest/engine -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__astring-opam__c__0.8.5-05af7f29/lib/astring -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__cmdliner-opam__c__1.0.4-b02e1a36/lib/cmdliner -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__fmt-opam__c__0.8.9-84546281/lib/fmt -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/lib/bytes -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__re-opam__c__1.9.0-235c45a5/lib/re -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__seq-opam__c__base-ce36fff8/lib/seq -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__stdlib_shims-opam__c__0.3.0-4baf027b/lib/stdlib-shims -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uchar-opam__c__0.0.2-cc2a1b22/lib/uchar -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uuidm-opam__c__0.9.7-c8bcf869/lib/uuidm -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uutf-opam__c__1.0.2-5f89e98a/lib/uutf -I runtime/.ppx_deriving_runtime.objs/byte -I runtime/.ppx_deriving_runtime.objs/native -no-alias-deps -opaque -open Dune__exe -o tests/.simple.eobjs/byte/dune__exe__Simple.cmo -c -impl tests/simple.re.pp.ml)
+$ (cd _build/default && /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I tests/.simple.eobjs/byte -I tests/.simple.eobjs/native -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib/alcotest -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib/alcotest/engine -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__astring-opam__c__0.8.5-05af7f29/lib/astring -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__cmdliner-opam__c__1.0.4-b02e1a36/lib/cmdliner -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__fmt-opam__c__0.8.9-84546281/lib/fmt -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.8.1-53dbcf64/lib/bytes -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__re-opam__c__1.9.0-235c45a5/lib/re -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__seq-opam__c__base-ce36fff8/lib/seq -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__stdlib_shims-opam__c__0.3.0-4baf027b/lib/stdlib-shims -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uchar-opam__c__0.0.2-cc2a1b22/lib/uchar -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uuidm-opam__c__0.9.7-c8bcf869/lib/uuidm -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__uutf-opam__c__1.0.2-5f89e98a/lib/uutf -I runtime/.ppx_deriving_runtime.objs/byte -I runtime/.ppx_deriving_runtime.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Dune__exe -o tests/.simple.eobjs/native/dune__exe__Simple.cmx -c -impl tests/simple.re.pp.ml)
+$ (cd _build/default && /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o tests/simple.exe /home/melina/.esy/3___________________________________________________________________/i/opam__s__stdlib_shims-opam__c__0.3.0-4baf027b/lib/stdlib-shims/stdlib_shims.cmxa /home/melina/.esy/3___________________________________________________________________/i/opam__s__fmt-opam__c__0.8.9-84546281/lib/fmt/fmt.cmxa /home/melina/.esy/3___________________________________________________________________/i/opam__s__astring-opam__c__0.8.5-05af7f29/lib/astring/astring.cmxa /home/melina/.esy/3___________________________________________________________________/i/opam__s__cmdliner-opam__c__1.0.4-b02e1a36/lib/cmdliner/cmdliner.cmxa /home/melina/.esy/3___________________________________________________________________/i/opam__s__fmt-opam__c__0.8.9-84546281/lib/fmt/fmt_cli.cmxa /home/melina/.esy/3___________________________________________________________________/i/opam__s__uuidm-opam__c__0.9.7-c8bcf869/lib/uuidm/uuidm.cmxa /home/melina/.esy/3___________________________________________________________________/i/opam__s__re-opam__c__1.9.0-235c45a5/lib/re/re.cmxa /home/melina/.esy/3___________________________________________________________________/i/opam__s__uutf-opam__c__1.0.2-5f89e98a/lib/uutf/uutf.cmxa /home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib/alcotest/engine/alcotest_engine.cmxa /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/lib/ocaml/unix.cmxa -I /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/lib/ocaml /home/melina/.esy/3___________________________________________________________________/i/opam__s__fmt-opam__c__0.8.9-84546281/lib/fmt/fmt_tty.cmxa /home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib/alcotest/alcotest.cmxa -I /home/melina/.esy/3___________________________________________________________________/i/opam__s__alcotest-opam__c__1.3.0-495efa32/lib/alcotest /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/lib/ocaml/str.cmxa -I /home/melina/.esy/3___________________________________________________________________/i/ocaml-4.10.0-e4568572/lib/ocaml runtime/ppx_deriving_runtime.cmxa tests/.simple.eobjs/native/dune__exe.cmx tests/.simple.eobjs/native/dune__exe__ModuleTest.cmx tests/.simple.eobjs/native/dune__exe__AliasTests.cmx tests/.simple.eobjs/native/dune__exe__GqlTest.cmx tests/.simple.eobjs/native/dune__exe__RecordTests.cmx tests/.simple.eobjs/native/dune__exe__RuntimeTests.cmx tests/.simple.eobjs/native/dune__exe__Test_utils.cmx tests/.simple.eobjs/native/dune__exe__Simple.cmx)
 $ (cd _build/default/tests && ./simple.exe)
-> Testing `Simple tests'.
-> This run has ID `AB800E43-0A00-4808-AB50-BB3A986AE244'.
+> false
+> false
+> false
+> true
+> false
+> Testing `PPX-GQL tests'.
+> This run has ID `551E7BB3-03A1-4C2A-B053-0EA3A5DDB8C2'.
 >
->   [OK]          Edge cases            0   NaN.
->   [OK]          Edge cases            1   ∞.
-> > [FAIL]        Other floats          0   others.
+>   [OK]          AliasStringTest                0   AliasStringTest.
+>   [OK]          AliasIntegerTest               0   AliasIntegerTest.
+>   [OK]          AliasBoolTest                  0   AliasBoolTest.
+>   [OK]          AliasRecordTest                0   AliasRecordTest.
+>   [OK]          AliasModuleTest                0   AliasModuleTest.
+>   [OK]          AliasModuleRecordTest          0   AliasModuleRecordTest.
+>   [OK]          AddRecTypeTest                 0   AddRecTypeTest.
+>   [OK]          CheckIfRecTypeTest             0   CheckIfRecTypeTest.
+>   [OK]          RecordBasicTest                0   RecordBasicTest.
+>   [OK]          RecordAliasPartTest            0   RecordAliasPartTest.
+>   [OK]          RecordAliasTest                0   RecordAliasTest.
+>   [OK]          RecordModuleTest               0   RecordModuleTest.
 >
-> ┌──────────────────────────────────────────────────────────────────────────────┐
-> │ [FAIL]        Other floats          0   others.                              │
-> └──────────────────────────────────────────────────────────────────────────────┘
-> ASSERT 0 is 0
-> ASSERT 0 is epsilon
-> ASSERT 0 is not 1
-> ASSERT 1 is not 0
-> ASSERT .3 is .3
-> FAIL .3 is .3
->
->    Expected: `0.3'
->    Received: `0.4'
->
-> Logs saved to `~/ppx/ocaml_ppx_graphql_test/ppx/_build/default/tests/_build/_tests/Simple tests/Other floats.000.output'.
->  ──────────────────────────────────────────────────────────────────────────────
->
-> Full test results in `~/ppx/ocaml_ppx_graphql_test/ppx/_build/default/tests/_build/_tests/Simple tests'.
-> 1 failure! in 0.000s. 3 tests run.
-[1]
+> Full test results in `~/ppx/ocaml_ppx_graphql_test/ppx/_build/default/tests/_build/_tests/PPX-GQL tests'.
+> Test Successful in 0.000s. 12 tests run.

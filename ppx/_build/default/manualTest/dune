@@ -1,6 +1,7 @@
 (executable
  (name ManualTest)
  (public_name ManualTest)
+ (libraries str DerivingGqlPpx.runtime)
  (preprocess
  (pps DerivingGqlPpx.lib)
  )

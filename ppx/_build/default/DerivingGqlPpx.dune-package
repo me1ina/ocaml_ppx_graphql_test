@@ -11,7 +11,7 @@
   (byte lib/ppx_deriving_accessors.cma)
   (native lib/ppx_deriving_accessors.cmxs))
  (native_archives lib/ppx_deriving_accessors.a)
- (requires ppxlib)
+ (requires ppxlib str DerivingGqlPpx.runtime)
  (main_module_name Ppx_deriving_accessors)
  (modes byte native)
  (modules
@@ -48,6 +48,38 @@
    (alias_module
     (name Ppx_deriving_accessors)
     (obj_name ppx_deriving_accessors)
+    (visibility public)
+    (kind alias)
+    (impl))
+   (wrapped true))))
+(library
+ (name DerivingGqlPpx.runtime)
+ (kind normal)
+ (archives
+  (byte runtime/ppx_deriving_runtime.cma)
+  (native runtime/ppx_deriving_runtime.cmxa))
+ (plugins
+  (byte runtime/ppx_deriving_runtime.cma)
+  (native runtime/ppx_deriving_runtime.cmxs))
+ (native_archives runtime/ppx_deriving_runtime.a)
+ (requires str)
+ (main_module_name Ppx_deriving_runtime)
+ (modes byte native)
+ (modules
+  (wrapped
+   (main_module_name Ppx_deriving_runtime)
+   (modules
+    ((name GraphQLppxExpr)
+     (obj_name ppx_deriving_runtime__GraphQLppxExpr)
+     (visibility public)
+     (impl))
+    ((name GraphQLppxSet)
+     (obj_name ppx_deriving_runtime__GraphQLppxSet)
+     (visibility public)
+     (impl)))
+   (alias_module
+    (name Ppx_deriving_runtime)
+    (obj_name ppx_deriving_runtime)
     (visibility public)
     (kind alias)
     (impl))

@@ -26,7 +26,7 @@ type t = {
   a: option(list(array(option(ModuleTest.a)))),
   b: a,
   c: x,
-  d: ModuleTest.b,
+  d: option(array(ModuleTest.b)),
   e: ModuleTest.c,
 };
 
@@ -34,6 +34,11 @@ print_endline("");
 
 StringSet.iter(print_endline, rec_types);
 
+/* let r = Str.regexp("hello \\([A-Za-z]+\\)");
+let s = Str.replace_first(r, "\\1", "hello world");
+
+print_endline(s);
+ */
 print_endline("\n" ++ t_gql);
 print_endline("\n" ++ moduleTest_a_gql);
 print_endline("\n" ++ moduleTest_b_gql);

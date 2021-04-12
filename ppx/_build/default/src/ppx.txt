@@ -151,3 +151,62 @@ RECORD TO ACCESSOR IMPL & INTF
       ~str_type_decl=impl_generator,
       ~sig_type_decl=intf_generator,
     );
+
+ALIAS STRUCTURE ITEM HELPER:
+([%e
+    eapply(
+      ~loc,
+      evar(~loc, "String.get"),
+      [
+        evar(~loc, type_name ++ "_gql"),
+        eapply(
+          ~loc,
+          evar(~loc, "-"),
+          [
+            eapply(
+              ~loc,
+              evar(~loc, "int_of_string"),
+              [
+                eapply(
+                  ~loc,
+                  evar(~loc, "String.length"),
+                  [
+                    evar(~loc, type_name ++ "_gql")
+                  ],
+                )
+              ],
+            ), 
+            eapply(
+              ~loc,
+              evar(~loc, "int_of_string"),
+              [
+                evar(~loc, "1")
+              ],
+            ) 
+          ],
+        ),
+      ],
+    ) 
+  ] == '!') ? [%e
+    eapply(
+      ~loc,
+      evar(~loc, "String.sub"),
+      [
+        evar(~loc, type_name ++ "_gql"),
+        eapply(
+          ~loc,
+          evar(~loc, "int_of_string"),
+          [
+            estring(~loc, "0")
+          ],
+        ),
+        eapply(
+          ~loc,
+          evar(~loc, "String.length"),
+          [
+            evar(~loc, type_name ++ "_gql")
+          ],
+        ),
+      ],
+    ) 
+  ] : [%e evar(~loc, type_name ++ "_gql")] ++ [%e estring(~loc, "!")]; 
