@@ -70,38 +70,11 @@ let alias_type_expression = (type_name, opt, loc, _isAbstr) => {
     [%e
     estring(~loc, type_name |> String.capitalize_ascii)] ++ [%e estring(~loc, opt?"":"!")]
   | false => 
-    if(
-    ([%e eapply(
-      ~loc,
-      evar(~loc, "String.get"),
-      [
+    [%e eapply(~loc, evar(~loc, "Ppx_deriving_runtime.GraphQLppxExpr.check_if_option"), [
         evar(~loc, type_name ++ "_gql"),
-        [%expr -1 + [%e eapply(
-          ~loc,
-          evar(~loc, "String.length"),
-          [
-            evar(~loc, type_name ++ "_gql")
-          ],
-        )]], 
-      ])]
-    == '!') && [%e ebool(~loc, opt)]
-    ) 
-    {
-      [%e eapply(
-      ~loc,
-      evar(~loc, "String.sub"),
-      [
-        evar(~loc, type_name ++ "_gql"),
-        eint(~loc, 0),
-        [%expr -1 + [%e eapply(
-          ~loc,
-          evar(~loc, "String.length"),
-          [
-            evar(~loc, type_name ++ "_gql")
-          ],
-        )]], 
-      ])]
-    } else {[%e evar(~loc, type_name ++ "_gql")]}
+        ebool(~loc, opt)
+      ])
+    ]
   };
 };
 
@@ -128,9 +101,9 @@ let get_module_expression = (module_name, type_name, opt, loc): ExtractExpressio
                 evar(~loc, "__MODULE__"),
                 estring(
                   ~loc,
-                  (module_name |> String.uncapitalize_ascii)
+                  /* (module_name |> String.uncapitalize_ascii)
                   ++ "_"
-                  ++ (type_name |> String.capitalize_ascii),
+                  ++  */(type_name |> String.capitalize_ascii),
                 ),
               ],
             )

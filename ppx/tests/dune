@@ -1,5 +1,5 @@
 (tests
- (names simple)
+ (names RunTests)
  (package DerivingGqlPpx)
  (preprocess
  (pps DerivingGqlPpx.lib)

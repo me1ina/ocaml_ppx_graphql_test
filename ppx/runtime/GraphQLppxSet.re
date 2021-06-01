@@ -19,10 +19,16 @@ let add_rec_type = (module_name, type_name) => {
             str_set
         )
     )
-
 };
 
 let check_if_rec_type = (module_name, type_name) => {
+    switch (StringMap.find_opt(module_name, rec_types^)) {
+        | Some(set) => (set |> StringSet.mem(type_name |> String.capitalize_ascii)) ? true : false
+        | _ => false
+    }
+    
+};
+
 
 /*   rec_types^ |> StringMap.iter((key, set) => {
     print_endline(key ++ "\n"); 
@@ -31,13 +37,6 @@ let check_if_rec_type = (module_name, type_name) => {
  
     print_endline("module:" ++ module_name);
     print_endline("type:" ++ type_name);  */
-    
-    switch (StringMap.find_opt(module_name, rec_types^)) {
-        | Some(set) => (set |> StringSet.mem(type_name |> String.capitalize_ascii)) ? true : false
-        | _ => false
-    }
-    
-};
 
 /*  let [%p pvar(~loc, "Ppx_deriving_runtime.GraphQLppxSet.rec_types")] = [%e
       eapply(

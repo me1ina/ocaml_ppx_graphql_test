@@ -75,12 +75,17 @@ let generate_data = (loc, type_declarations) => {
     )
   | {ptype_kind: Ptype_abstract, ptype_manifest, ptype_loc, _} =>
     switch (ptype_manifest) {
-    | Some(core_type) =>
+    | Some(core_type) => {
+      Utils.isModuleType(core_type, loc) ? {
+        let module_name = Utils.get_module(core_type, loc)[0];
+        let type_name = Utils.get_module(core_type, loc)[1];
+        Module(module_name, type_name);
+      } :
       convert_nested_core_types(
         Utils.get_core_type(core_type, loc),
         Utils.extract_string_from_core_type(core_type, loc),
         ptype_loc,
-      )
+      )}
     | _ => Location.raise_errorf(~loc, "No type found")
     }
 

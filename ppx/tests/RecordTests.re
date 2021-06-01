@@ -34,6 +34,30 @@ module RecordModuleTest = {
 }";
 }; 
 
+module RecordModule2Test = {
+    [@deriving gql]
+    type test = {
+        a: option(list(array(option(Module2Test.a)))),
+        b: Module2Test.b,
+        c: option(Module2Test.c),        
+        d: option(array(Module2Test.d)),
+        e: Module2Test.e,
+        f: array(Module2Test.f),
+        g: list(Module2Test.g),
+      };
+    let name = "RecordModule2Test";
+    let expected =
+"type Test {
+ a: [[Module2Test_A]!]
+ b: [ModuleTest_A!]
+ c: [ModuleTest_A!]
+ d: [[ModuleTest_A!]]
+ e: ModuleTest_A
+ f: [[Integer]!]!
+ g: [[Bool!]!]!
+}";
+}; 
+
 module RecordAliasTest = {
     [@deriving gql]
     type a = {
